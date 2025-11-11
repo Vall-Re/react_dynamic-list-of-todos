@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import React from 'react';
+import classNames from 'classnames';
 import { Todo } from '../../types/Todo';
 
 type Props = {
@@ -26,7 +27,9 @@ export const TodoList: React.FC<Props> = ({ todos, onSelect }) => (
       {todos.map(todo => (
         <tr
           data-cy="todo"
-          className={todo.completed ? 'has-background-info-light' : ''}
+          className={classNames({
+            'has-background-info-light': todo.completed,
+          })}
           key={todo.id}
         >
           <td className="is-vcentered">{todo.id}</td>
@@ -48,9 +51,10 @@ export const TodoList: React.FC<Props> = ({ todos, onSelect }) => (
 
           <td className="is-vcentered is-expanded">
             <p
-              className={
-                todo.completed ? 'has-text-success' : 'has-text-danger'
-              }
+              className={classNames({
+                'has-text-success': todo.completed,
+                'has-text-danger': !todo.completed,
+              })}
             >
               {todo.title}
             </p>
@@ -66,9 +70,10 @@ export const TodoList: React.FC<Props> = ({ todos, onSelect }) => (
             >
               <span className="icon">
                 <i
-                  className={
-                    todo.isSelected ? 'far fa-eye-slash' : 'far fa-eye'
-                  }
+                  className={classNames({
+                    'far fa-eye-slash': todo.isSelected,
+                    'far fa-eye': !todo.isSelected,
+                  })}
                 />
               </span>
             </button>
