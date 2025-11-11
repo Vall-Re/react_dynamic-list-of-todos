@@ -23,9 +23,8 @@ export const TodoModal: React.FC<Props> = ({
     <div
       className={classNames('modal', { 'is-active': !!todo })}
       data-cy="modal"
-      onClick={onClose}
     >
-      <div className="modal-background" />
+      <div className="modal-background" onClick={onClose} />
 
       {isLoading ? (
         <Loader />
